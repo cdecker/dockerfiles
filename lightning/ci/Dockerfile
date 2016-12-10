@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 MAINTAINER Christian Decker <decker.christian@gmail.com>
 
-RUN useradd --disabled-password --gecos '' -ms /bin/bash builder
+RUN useradd -ms /bin/bash builder
 USER builder
 
 RUN deb http://ppa.launchpad.net/bitcoin/bitcoin/ubuntu xenial main > /etc/apt/sources.list.d/bitcoin-bitcoin-xenial.list
