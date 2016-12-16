@@ -9,4 +9,4 @@ RUN apt-get install -qq -y --no-install-recommends --allow-unauthenticated curl 
 RUN mkdir /build && chown builder /build
 WORKDIR /build
 
-USER builder
+#USER builder
