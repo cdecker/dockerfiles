@@ -1,13 +1,34 @@
 FROM ubuntu:16.04
-ENV LIGHTNINGD_VERSION=v0.5.2-2016-11-21
 
 RUN echo deb http://ppa.launchpad.net/bitcoin/bitcoin/ubuntu xenial main > /etc/apt/sources.list.d/bitcoin-bitcoin-xenial.list && \
     apt-get update -qq && \
-    apt-get install -qq -y --no-install-recommends --allow-unauthenticated git make automake autoconf libtool bitcoind build-essential libprotobuf-c-dev libsodium-dev libbase58-dev libsqlite3-dev libgmp-dev libsqlite3-dev git net-tools valgrind curl ca-certificates
+    apt-get install -qq -y --no-install-recommends --allow-unauthenticated \
+	    autoconf \
+	    automake \
+	    bitcoind \
+	    build-essential \
+	    ca-certificates \
+	    curl \
+	    libbase58-dev \
+	    libgmp-dev \
+	    libprotobuf-c-dev \
+	    libsodium-dev \
+	    libsqlite3-dev \
+	    libtool \
+	    make \
+	    net-tools \
+	    python \
+	    python3 \
+	    valgrind \
+	    git
 
 RUN git clone https://github.com/ElementsProject/lightning.git /opt/lightningd && \
     cd /opt/lightningd && \
-    make && cp lightningd/lightningd_* daemon/lightningd daemon/lightning-cli /usr/bin/
+    make && \
+    cp lightningd/lightningd_* daemon/lightning-cli /usr/bin/ && \
+    rm -rf /opt/lightningd
 
-ENTRYPOINT /usr/bin/lightningd
+ADD entrypoint.sh /
+
+ENTRYPOINT /entrypoint.sh
 CMD ['--port=9735']
