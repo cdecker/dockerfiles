@@ -25,7 +25,7 @@ RUN echo deb http://ppa.launchpad.net/bitcoin/bitcoin/ubuntu xenial main > /etc/
 RUN git clone https://github.com/ElementsProject/lightning.git /opt/lightningd && \
     cd /opt/lightningd && \
     make && \
-    cp lightningd/lightningd lightningd/lightningd_* daemon/lightning-cli /usr/bin/ && \
+    cp lightningd/lightningd lightningd/lightning_* cli/lightning-cli /usr/bin/ && \
     rm -rf /opt/lightningd
 
 ADD entrypoint.sh /
