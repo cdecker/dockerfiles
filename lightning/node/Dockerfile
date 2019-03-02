@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-ENV LIGHTNINGD_VERSION=master
+ENV LIGHTNINGD_VERSION=v0.7.0
 
 RUN echo deb http://ppa.launchpad.net/bitcoin/bitcoin/ubuntu xenial main > /etc/apt/sources.list.d/bitcoin-bitcoin-xenial.list && \
     apt-get update -qq && \
